@@ -1,0 +1,21 @@
+{
+    "name": "gem-motors/backend",
+    "description": "API REST para Sistema de Órdenes de Trabajo G&E Motors",
+    "type": "project",
+    "require": {
+        "php": ">=8.2",
+        "ext-pgsql": "*",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "GemMotors\\": "app/",
+            "GemMotors\\Config\\": "Config/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GemMotors\\Tests\\": "tests/"
+        }
+    }
+}

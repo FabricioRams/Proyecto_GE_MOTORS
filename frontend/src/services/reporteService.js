@@ -1,0 +1,32 @@
+import { apiService } from './api'
+
+const apiBase = import.meta.env.VITE_API_BASE || 'http://localhost:8000/api'
+
+export const reporteService = {
+  getIngresos(params = {}) {
+    return apiService.get('/reportes/ingresos', params)
+  },
+
+  getProductividad(params = {}) {
+    return apiService.get('/reportes/productividad', params)
+  },
+
+  getRotacionRepuestos() {
+    return apiService.get('/reportes/rotacion-repuestos')
+  },
+
+  getTiempoPromedio() {
+    return apiService.get('/reportes/tiempo-promedio')
+  },
+
+  generarPdf(ordenId, tipo) {
+    return apiService.get(`/reportes/pdf/orden/${ordenId}`, { tipo })
+  },
+
+  async exportarExcelInventario() {
+    const response = await fetch(`${apiBase}/reportes/excel/inventario`, {
+      headers: { Authorization: `Bearer ${apiService.getToken()}` }
+    })
+    return response.blob()
+  }
+}
